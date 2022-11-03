@@ -1,8 +1,12 @@
 package com.example.todoschedule;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,5 +14,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button newaddbutton = (Button) findViewById(R.id.newaddbutton);
+        Button deletebutton = (Button) findViewById(R.id.deletebutton);
+
+        newaddbutton.setOnClickListener(this::onClick);
+        deletebutton.setOnClickListener(this::onClick);
     }
+
+    public void onClick(@NonNull View view){
+        switch (view.getId()){
+            case R.id.newaddbutton:
+                Intent newtask = new Intent(this, NewtaskActivity.class);
+                if (newtask.resolveActivity(getPackageManager()) != null){
+                    startActivity(newtask);
+                }
+                break;
+            case R.id.deletebutton:
+
+                break;
+
+        }
+    }
+
 }
