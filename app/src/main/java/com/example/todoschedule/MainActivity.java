@@ -21,10 +21,10 @@ public class MainActivity extends AppCompatActivity {
         deletebutton.setOnClickListener(this::onClick);
     }
 
-    public void onClick(@NonNull View view){
+    private void onClick(View view) {
         switch (view.getId()){
             case R.id.newaddbutton:
-                Intent newtask = new Intent(this, NewtaskActivity.class);
+                Intent newtask = new Intent(getApplication() , NewtaskActivity.class);
                 if (newtask.resolveActivity(getPackageManager()) != null){
                     startActivity(newtask);
                 }
@@ -35,5 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
 
 }
