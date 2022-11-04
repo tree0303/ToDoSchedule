@@ -1,6 +1,20 @@
 <resources>
     <string name="app_name">ToDoSchedule</string>
+    <!-- mainactivity -->
     <string name="newaddbutton_name">＋新規追加</string>
     <string name="deletebutton_name">☑済み削除</string>
+
+    <!-- newtaskactivity -->
+    <string name="newaddtext_name">新規追加</string>
+    <string name="tasktext_name">タスク名</string>
+    <string name="datetimetext_name">日時(期限)</string>
+    <string name="returntext_name">繰り返し</string>
+    <string name="notreturn_name">繰り返さない</string>
+    <string name="hourreturn_name">時間おき</string>>
+    <string name="dayreturn_name">日おき</string>>
+    <string name="weekreturn_name">週おき</string>>
+    <string name="monthreturn_name">月おき</string>
+    <string name="addbutton_name">追加</string>
+
 
 </resources>
