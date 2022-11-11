@@ -7,13 +7,17 @@
     tools:context=".NewtaskActivity">
 
     <LinearLayout
+        android:id="@+id/mainlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:focusableInTouchMode="true">
 
         <Space
             android:layout_width="match_parent"
@@ -63,9 +67,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="@string/tasktext_name"
                 android:textColor="@color/black"
-                android:textSize="20dp"
-                android:text="@string/tasktext_name" />
+                android:textSize="20dp" />
 
             <Space
                 android:layout_width="50dp"
@@ -95,7 +99,9 @@
                     android:id="@+id/task_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:translationZ="1dp"
                     android:ems="10"
+                    android:imeOptions="actionDone"
                     android:inputType="textPersonName"
                     android:textColor="@color/black"
                     android:textSize="30dp" />
@@ -127,9 +133,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="@string/datetimetext_name"
                 android:textColor="@color/black"
-                android:textSize="20dp"
-                android:text="@string/datetimetext_name" />
+                android:textSize="20dp" />
 
             <Space
                 android:layout_width="50dp"
@@ -153,17 +159,36 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/pale_blue"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/datetime_input"
+                    android:id="@+id/date_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.4"
+                    android:translationZ="1dp"
                     android:ems="10"
-                    android:inputType="datetime"
-                    android:text=""
+                    android:imeOptions="actionDone"
+                    android:nextFocusDown="@id/mainlayout"
+                    android:inputType="date"
+                    android:text="0000/00/00"
                     android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:textSize="30dp" />
+
+                <EditText
+                    android:id="@+id/time_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:translationZ="1dp"
+                    android:ems="10"
+                    android:imeOptions="actionDone"
+                    android:nextFocusDown="@id/mainlayout"
+                    android:inputType="time"
+                    android:text="23:59"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
                     android:textSize="30dp" />
             </LinearLayout>
 
@@ -193,9 +218,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="@string/returntext_name"
                 android:textColor="@color/black"
-                android:textSize="20dp"
-                android:text="@string/returntext_name" />
+                android:textSize="20dp" />
 
             <Space
                 android:layout_width="50dp"
@@ -223,21 +248,25 @@
 
                 <Spinner
                     android:id="@+id/returnnum_input"
+                    style="?attr/spinnerDropDownItemStyle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.7"
-                    style="?attr/spinnerDropDownItemStyle"
-                    android:singleLine="true"
+                    android:translationZ="1dp"
                     android:ellipsize="marquee"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="1dp"/>
+                    android:textSize="30dp" />
 
                 <Spinner
                     android:id="@+id/return_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.3"
+                    android:translationZ="1dp"
+                    android:imeOptions="actionDone"
                     android:textColor="@color/black"
                     android:textSize="30dp" />
 
@@ -269,8 +298,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="20dp"
-                android:text="@string/addbutton_name" />
+                android:enabled="false"
+                android:text="@string/addbutton_name"
+                android:textSize="20dp" />
 
             <Space
                 android:layout_width="100dp"
@@ -278,7 +308,6 @@
                 android:layout_weight="0.2" />
 
         </LinearLayout>
-
 
 
     </LinearLayout>
