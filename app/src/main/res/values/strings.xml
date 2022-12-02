@@ -17,6 +17,9 @@
     <string name="addbutton_name">追加</string>
     <string name="finish">完了</string>
     <string name="thisday">今日中</string>
+    <string name="thisweek">今週中</string>
+    <string name="thismonth">今月中</string>
+    <string name="afterthismonth">来月以降</string>
 
 
 </resources>

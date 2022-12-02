@@ -1,28 +1,36 @@
-package com.example.todoschedule;
+package com.example.todoschedule.fragment.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.todoschedule.DeleteTaskListener;
+import com.example.todoschedule.R;
 import com.example.todoschedule.database.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerViewAdapter.ViewHolder> {
+public class ThisWeekItemRecyclerViewAdapter extends RecyclerView.Adapter<ThisWeekItemRecyclerViewAdapter.ViewHolder> implements AssortmentOfDateTime {
 
 
     private List<Task> taskList;
     private DeleteTaskListener deleteTaskListener;
 
-    public ItemRecyclerViewAdapter(){
+    public ThisWeekItemRecyclerViewAdapter(){
         this.taskList = new ArrayList<>();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return taskList.get(position).getId();
     }
 
     @NonNull
@@ -34,8 +42,8 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.getItemtask_name().setText((CharSequence) taskList.get(position).getTaskName());
-        holder.getItemdatetime().setText((CharSequence) taskList.get(position).getDatetime());
+        holder.getItemtask_name().setText(taskList.get(position).getTaskName());
+        holder.getItemdatetime().setText(taskList.get(position).getDatetime());
         holder.getItemfinbutton().setTag(position);
         holder.getItemfinbutton().setOnClickListener(view -> {
             if (deleteTaskListener!=null) deleteTaskListener.onClickDeleteTask(position);
@@ -77,8 +85,8 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setTaskList(List<Task> taskList) {
-        this.taskList = taskList;
+    public void setTaskList(List<Task> tasklist) {
+        this.taskList = tasklist;
         notifyDataSetChanged();
     }
 }

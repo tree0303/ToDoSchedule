@@ -34,7 +34,7 @@ public class Task {
     }
 
     public String getDatetime() {
-        return datetime;
+        return this.datetime;
     }
     public void setDatetime(String datetime) {
         this.datetime = datetime;
@@ -60,5 +60,6 @@ public class Task {
     public void setFintask(boolean fintask) {
         this.fintask = fintask;
     }
+
 
 }

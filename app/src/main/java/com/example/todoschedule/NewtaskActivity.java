@@ -74,19 +74,20 @@ public class NewtaskActivity extends AppCompatActivity
         mainLayout = findViewById(R.id.mainlayout);
         mainLayout.setOnTouchListener(this::onTouch);
         //Button
-        add_button = (Button) findViewById(R.id.addbutton);
+        add_button = findViewById(R.id.addbutton);
         add_button.setOnClickListener(this::onClick);
         //edittext
-        task_input = (EditText) findViewById(R.id.task_input);
-        date_input = (EditText) findViewById(R.id.date_input);
-        time_input = (EditText) findViewById(R.id.time_input);
+        task_input = findViewById(R.id.task_input);
+        date_input = findViewById(R.id.date_input);
+        time_input = findViewById(R.id.time_input);
 
         task_input.addTextChangedListener( this);
 
         date_input.setOnClickListener(this::onClick);
         date_input.setOnFocusChangeListener(this::onFocusChange);
         date_input.setKeyListener(null);
-        date_input.setText(String.format("%d/%d/%d",calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) + 1,calendar.get(Calendar.DAY_OF_MONTH)));
+        //日付初期値
+        date_input.setText(String.format("%d/%02d/%02d",calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH) + 1,calendar.get(Calendar.DAY_OF_MONTH)));
 
 
         time_input.setOnClickListener(this::onClick);
@@ -94,8 +95,8 @@ public class NewtaskActivity extends AppCompatActivity
         time_input.setKeyListener(null);
 
         //spinner
-        returnnum_input = (Spinner) findViewById(R.id.returnnum_input);
-        return_input = (Spinner) findViewById(R.id.return_input);
+        returnnum_input = findViewById(R.id.returnnum_input);
+        return_input = findViewById(R.id.return_input);
         //return_input
         ArrayAdapter<CharSequence> return_array_adapter = ArrayAdapter.createFromResource(this,
                 R.array.return_array, android.R.layout.simple_spinner_item);
@@ -149,6 +150,7 @@ public class NewtaskActivity extends AppCompatActivity
                 datetime.append(date_input.getText().toString());
                 datetime.append(" ");
                 datetime.append(time_input.getText().toString());
+                Log.i("あああああ", datetime.toString());
                 taskViewModel = new ViewModelProvider(this).get(TaskViewModel.class);
                 disposable.add(taskViewModel.insert(task_input.getText().toString(), datetime.toString(),
                         return_input.toString(), Integer.valueOf(returnnum_input.getId())+1)

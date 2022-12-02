@@ -1,9 +1,10 @@
-package com.example.todoschedule.fragment;
+package com.example.todoschedule.fragment.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,11 @@ import com.example.todoschedule.DeleteTaskListener;
 import com.example.todoschedule.R;
 import com.example.todoschedule.database.Task;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThisDayItemRecyclerViewAdapter extends RecyclerView.Adapter<ThisDayItemRecyclerViewAdapter.ViewHolder> {
+public class ThisDayItemRecyclerViewAdapter extends RecyclerView.Adapter<ThisDayItemRecyclerViewAdapter.ViewHolder>{
 
 
     private List<Task> taskList;
@@ -27,17 +29,23 @@ public class ThisDayItemRecyclerViewAdapter extends RecyclerView.Adapter<ThisDay
         this.taskList = new ArrayList<>();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        Log.i("かきくけこ", String.valueOf(position));
+        return taskList.get(position).getId();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_this_day_task_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_task_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.getItemtask_name().setText((CharSequence) taskList.get(position).getTaskName());
-        holder.getItemdatetime().setText((CharSequence) taskList.get(position).getDatetime());
+        holder.getItemtask_name().setText(taskList.get(position).getTaskName());
+        holder.getItemdatetime().setText(taskList.get(position).getDatetime());
         holder.getItemfinbutton().setTag(position);
         holder.getItemfinbutton().setOnClickListener(view -> {
             if (deleteTaskListener!=null) deleteTaskListener.onClickDeleteTask(position);
@@ -79,9 +87,11 @@ public class ThisDayItemRecyclerViewAdapter extends RecyclerView.Adapter<ThisDay
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setTaskList(List<Task> taskList) {
-        this.taskList = taskList;
-        //TODO:今日中の範囲のTaskListにして並び替え
+    public void setTaskList(List<Task> tasklist) {
+        this.taskList = tasklist;
         notifyDataSetChanged();
     }
+
+
+
 }

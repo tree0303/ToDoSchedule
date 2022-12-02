@@ -8,27 +8,20 @@
     tools:context=".fragment.TaskListFragment"
     >
 
-    <TextView
-        android:id="@+id/thisday_text"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/thisday"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textAlignment="viewEnd"
-        android:textStyle="bold"
-        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/task_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="30dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
