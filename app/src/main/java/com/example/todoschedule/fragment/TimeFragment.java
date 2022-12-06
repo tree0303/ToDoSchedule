@@ -16,17 +16,15 @@ public class TimeFragment extends DialogFragment {
 
     public TimeFragment(){
         final Calendar calendar = Calendar.getInstance();
-        hour = 00;
-        minute = 00;
+        hour = 0;
+        minute = 0;
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), (TimePickerDialog.OnTimeSetListener) getActivity(), hour, minute, true);
-
-        return timePickerDialog;
+        return new TimePickerDialog(getActivity(), (TimePickerDialog.OnTimeSetListener) getActivity(), hour, minute, true);
     }
     public void setHour(int h){
         hour = h;

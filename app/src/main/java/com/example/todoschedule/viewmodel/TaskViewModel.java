@@ -1,7 +1,6 @@
 package com.example.todoschedule.viewmodel;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -10,20 +9,14 @@ import com.example.todoschedule.database.AppDatabase;
 import com.example.todoschedule.database.Task;
 import com.example.todoschedule.database.TaskDao;
 
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.core.Flowable;
 
 public class TaskViewModel extends AndroidViewModel{
 
-    private TaskDao taskDao;
-    private List<Task> taskList;
+    private final TaskDao taskDao;
 
     public TaskViewModel(@NonNull Application application) {
         super(application);
@@ -32,10 +25,10 @@ public class TaskViewModel extends AndroidViewModel{
     }
 
     public Flowable<List<Task>> getAllTaskList(){
-        return taskDao.getAllTasks().map(tasks -> taskList = tasks);
+        return taskDao.getAllTasks().map(tasks -> tasks);
     }
     public Flowable<List<Task>> getfinTaskList(boolean fintask){
-        return taskDao.getfinTasks(fintask).map(tasks -> taskList = tasks);
+        return taskDao.getfinTasks(fintask).map(tasks -> tasks);
     }
 
     public Completable insert(String taskname, String datetime, String returndegree, Integer returnnum){

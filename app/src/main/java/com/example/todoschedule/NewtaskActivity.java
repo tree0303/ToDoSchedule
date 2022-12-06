@@ -56,7 +56,7 @@ public class NewtaskActivity extends AppCompatActivity
     private final CompositeDisposable disposable = new CompositeDisposable();
 
 
-    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
+    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility", "DefaultLocale"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,6 +112,7 @@ public class NewtaskActivity extends AppCompatActivity
     }
 
     //edittext日付と時間のダイアログ表示
+    @SuppressLint("NonConstantResourceId")
     public void onFocusChange(View view, boolean hasFocus){
         switch (view.getId()){
             //日付のダイアログ表示
@@ -133,16 +134,12 @@ public class NewtaskActivity extends AppCompatActivity
     @Override
     public void afterTextChanged(Editable editable){
         String str = editable.toString().replaceAll(" |　","");
-        if (!str.equals("")){
-            add_button.setEnabled(true);
-        }else {
-            add_button.setEnabled(false);
-        }
+        add_button.setEnabled(!str.equals(""));
     }
 
 
     //button
-    @SuppressLint("NonConstantResourceId")
+    @SuppressLint({"NonConstantResourceId", "QueryPermissionsNeeded", "ResourceType"})
     public void onClick(@NonNull View view) {
         switch (view.getId()){
             case R.id.addbutton:
@@ -153,7 +150,7 @@ public class NewtaskActivity extends AppCompatActivity
                 Log.i("あああああ", datetime.toString());
                 taskViewModel = new ViewModelProvider(this).get(TaskViewModel.class);
                 disposable.add(taskViewModel.insert(task_input.getText().toString(), datetime.toString(),
-                        return_input.toString(), Integer.valueOf(returnnum_input.getId())+1)
+                        return_input.toString(), returnnum_input.getId() + 1)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(() -> {}, throwable -> Log.e(TAG,
@@ -188,17 +185,8 @@ public class NewtaskActivity extends AppCompatActivity
                         returnnum_input.setVisibility(View.INVISIBLE);
                         break;
                     case 1://時間おき
-                        //日にち選択のspinner表示
-                        returnnum_input.setVisibility(View.VISIBLE);
-                        break;
                     case 2://日おき
-                        //日にち選択のspinner表示
-                        returnnum_input.setVisibility(View.VISIBLE);
-                        break;
                     case 3://週おき
-                        //日にち選択のspinner表示
-                        returnnum_input.setVisibility(View.VISIBLE);
-                        break;
                     case 4://月おき
                         //日にち選択のspinner表示
                         returnnum_input.setVisibility(View.VISIBLE);

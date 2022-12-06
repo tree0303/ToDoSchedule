@@ -3,6 +3,7 @@ package com.example.todoschedule;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         deletebutton.setOnClickListener(this::onClick);
     }
 
+    @SuppressLint({"NonConstantResourceId", "QueryPermissionsNeeded"})
     private void onClick(View view) {
         switch (view.getId()){
             case R.id.newaddbutton:

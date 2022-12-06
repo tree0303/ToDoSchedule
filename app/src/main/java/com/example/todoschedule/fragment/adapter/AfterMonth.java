@@ -25,7 +25,7 @@ public class AfterMonth extends RecyclerView.Adapter<AfterMonth.ViewHolder> impl
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView aftermonth;
+        private final TextView aftermonth;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             aftermonth = itemView.findViewById(R.id.aftermonth_text);

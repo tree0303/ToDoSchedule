@@ -37,14 +37,9 @@ public class TaskListFragment extends Fragment implements DeleteTaskListener, As
     private ThisWeekItemRecyclerViewAdapter weeekadapter;
     private ThisMonthItemRecyclerViewAdapter monthadapter;
     private AfterThisMonthItemRecyclerViewAdapter aftermonthkadapter;
-    private ThisDay thisDay;
-    private ThisWeek thisWeek;
-    private ThisMonth thisMonth;
-    private AfterMonth afterMonth;
-    private RecyclerView recyclerView;
     private TaskViewModel taskViewModel;
     private final String TAG = "TaskListFragment";
-    private CompositeDisposable disposable = new CompositeDisposable();
+    private final CompositeDisposable disposable = new CompositeDisposable();
 
 
     @Override
@@ -59,13 +54,13 @@ public class TaskListFragment extends Fragment implements DeleteTaskListener, As
         View view = inflater.inflate(R.layout.fragment_task_list, container, false);
 
         taskViewModel = new ViewModelProvider(this).get(TaskViewModel.class);
-        thisDay = new ThisDay();
+        ThisDay thisDay = new ThisDay();
         dayadapter = new ThisDayItemRecyclerViewAdapter();
-        thisWeek = new ThisWeek();
+        ThisWeek thisWeek = new ThisWeek();
         weeekadapter = new ThisWeekItemRecyclerViewAdapter();
-        thisMonth = new ThisMonth();
+        ThisMonth thisMonth = new ThisMonth();
         monthadapter = new ThisMonthItemRecyclerViewAdapter();
-        afterMonth = new AfterMonth();
+        AfterMonth afterMonth = new AfterMonth();
         aftermonthkadapter = new AfterThisMonthItemRecyclerViewAdapter();
 
         dayadapter.setDeleteTaskListener(this);
@@ -74,7 +69,7 @@ public class TaskListFragment extends Fragment implements DeleteTaskListener, As
         aftermonthkadapter.setDeleteTaskListener(this);
 
 
-        recyclerView = view.findViewById(R.id.task_list_view);
+        RecyclerView recyclerView = view.findViewById(R.id.task_list_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         ConcatAdapter concatAdapter = new ConcatAdapter(thisDay, dayadapter,
                 thisWeek, weeekadapter,
