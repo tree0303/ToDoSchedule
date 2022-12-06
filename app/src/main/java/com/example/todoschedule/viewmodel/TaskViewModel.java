@@ -34,6 +34,9 @@ public class TaskViewModel extends AndroidViewModel{
     public Flowable<List<Task>> getAllTaskList(){
         return taskDao.getAllTasks().map(tasks -> taskList = tasks);
     }
+    public Flowable<List<Task>> getfinTaskList(boolean fintask){
+        return taskDao.getfinTasks(fintask).map(tasks -> taskList = tasks);
+    }
 
     public Completable insert(String taskname, String datetime, String returndegree, Integer returnnum){
         Task task = new Task();

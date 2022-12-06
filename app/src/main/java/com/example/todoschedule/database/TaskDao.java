@@ -15,17 +15,19 @@ import java.util.List;
 @Dao
 public interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public Completable insertAll(Task tasks);
+    Completable insertAll(Task tasks);
 
     @Update
-    public Completable update(Task tasks);
+    Completable update(Task tasks);
 
     @Delete
-    public Completable delete(Task tasks);
+    Completable delete(Task tasks);
 
     //全部取り出す
     @Query("SELECT * FROM tasks")
-    public Flowable<List<Task>> getAllTasks();
+    Flowable<List<Task>> getAllTasks();
 
-    //あとで取り出すやつ追加
+    //完了or未完了
+    @Query("SELECT * FROM tasks WHERE fintask = :fintask")
+    Flowable<List<Task>> getfinTasks(boolean fintask);
 }

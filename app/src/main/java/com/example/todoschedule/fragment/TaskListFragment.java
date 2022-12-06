@@ -89,7 +89,7 @@ public class TaskListFragment extends Fragment implements DeleteTaskListener, As
     @Override
     public void onStart() {
         super.onStart();
-        disposable.add(taskViewModel.getAllTaskList()
+        disposable.add(taskViewModel.getfinTaskList(false)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(tasks -> {
