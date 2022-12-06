@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.todoschedule.DeleteTaskListener;
 import com.example.todoschedule.R;
+import com.example.todoschedule.database.Task;
 import com.example.todoschedule.fragment.adapter.AfterMonth;
 import com.example.todoschedule.fragment.adapter.AfterThisMonthItemRecyclerViewAdapter;
 import com.example.todoschedule.fragment.adapter.AssortmentOfDateTime;
@@ -106,16 +107,10 @@ public class TaskListFragment extends Fragment implements DeleteTaskListener, As
         disposable.clear();
     }
 
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        binding = null;
-//    }
 
     @Override
-    public void onClickDeleteTask(int position) {
-        Log.i("あいうえお", String.valueOf(position));
-        disposable.add(taskViewModel.delete(position)
+    public void onClickDeleteTask(Task task) {
+        disposable.add(taskViewModel.delete(task)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> {}, throwable -> Log.e(TAG, "Unable to delete", throwable)));

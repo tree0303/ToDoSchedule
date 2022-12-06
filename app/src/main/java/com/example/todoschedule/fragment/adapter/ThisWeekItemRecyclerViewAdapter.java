@@ -46,7 +46,7 @@ public class ThisWeekItemRecyclerViewAdapter extends RecyclerView.Adapter<ThisWe
         holder.getItemdatetime().setText(taskList.get(position).getDatetime());
         holder.getItemfinbutton().setTag(position);
         holder.getItemfinbutton().setOnClickListener(view -> {
-            if (deleteTaskListener!=null) deleteTaskListener.onClickDeleteTask(position);
+            if (deleteTaskListener!=null) deleteTaskListener.onClickDeleteTask(taskList.get(position));
         });
     }
 

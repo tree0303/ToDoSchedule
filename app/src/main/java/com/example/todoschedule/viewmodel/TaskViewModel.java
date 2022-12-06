@@ -43,8 +43,8 @@ public class TaskViewModel extends AndroidViewModel{
         task.setReturnnum(returnnum);
         return taskDao.insertAll(task);
     }
-    public Completable delete(int position){
-        return taskDao.delete(taskList.get(position));
+    public Completable delete(Task task){
+        return taskDao.delete(task);
     }
 
 

@@ -1,5 +1,7 @@
 package com.example.todoschedule;
 
+import com.example.todoschedule.database.Task;
+
 public interface DeleteTaskListener {
-    void onClickDeleteTask(int position);
+    void onClickDeleteTask(Task task);
 }
